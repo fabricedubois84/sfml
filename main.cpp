@@ -1,24 +1,26 @@
-#include <SFML/Graphics.hpp>
+#include <iostream>
+#include <SFML/System.hpp>
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    sf::Clock clock;
+    sf::Time elasped1 = clock.getElapsedTime();
 
-    while (window.isOpen())
+    std::cout << "Time elapsed = " << elasped1.asSeconds() << '\n';
+    
+    clock.restart();
+
+    int i{0};
+
+    while (i < 100)
     {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        window.clear();
-        window.draw(shape);
-        window.display();
+        std::cout << i << '\n';
+        ++i;
     }
+
+    sf::Time elapsed2 = clock.getElapsedTime();
+
+    std::cout << "Time elapsed = " << elapsed2.asSeconds() << '\n';
 
     return 0;
 }
